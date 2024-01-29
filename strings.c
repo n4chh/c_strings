@@ -43,7 +43,7 @@ void    ctor(t_string *this, char *data)
             {
                 (*this)->data[(*this)->data_len] = data[(*this)->data_len];
                 (*this)->data_len++;
-            }
+}
         }
     }
 }

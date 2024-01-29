@@ -20,51 +20,12 @@ static int wordcount(t_string   this, char  delimitator)
 
 void    findword(t_string   this, char  delimitator, t_string   word)
 {
-    while (this->data[word->start] == delimitator)
+    while (this->data[word->start + this->start] == delimitator)
         word->start++;
-    word->end = word->start;
+    word->end = word->start + this->start;
     while (word->end < this->end 
         && this->data[word->end] != delimitator)
         word->end++;
-}
-
-void    split(t_string this, char delimitator)
-{
-    size_t      w;
-    t_string    str;
-
-    w = 0;
-    if (this->list)
-        clearlist(this, 0);
-    this->list_size = wordcount(this, delimitator);
-    this->list = malloc(sizeof(t_string) * this->list_size);
-    if (!this->list)
-        this->list_size = 0;
-    str = str_cpy(this);
-    if (!str)
-        return (void)""; 
-    while (w++ < this->list_size)
-    {
-        findword(this, delimitator, str);
-        this->list[w - 1] = nstr_cpy(str);
-        if (this->list[w - 1] == NULL)
-            return clearlist(this, w - 1);
-        str->start = str->end;
-    }
-    dtor(&str);
-}
-
-void    printlist(t_string this)
-{
-    size_t  i;
-
-    i = 0;
-    while (i < this->list_size)
-    {
-        print(this->list[i]);
-        i++;
-        write(1, "\n", 1);
-    }
 }
 
 void    clearlist(t_string this, size_t size)
@@ -78,4 +39,49 @@ void    clearlist(t_string this, size_t size)
         while (size--)
             dtor(&this->list[size]);
     
+}
+
+t_string    split(t_string this, char delimitator)
+{
+    size_t      w;
+    t_string    str;
+
+    w = 0;
+    if (this->list)
+        clearlist(this, 0);
+    this->list_size = wordcount(this, delimitator);
+    this->list = malloc(sizeof(t_string) * this->list_size);
+    if (!this->list)
+        this->list_size = 0;
+    str = str_cpy(this);
+    if (!str)
+        return (NULL); 
+    while (w++ < this->list_size)
+    {
+        findword(this, delimitator, str);
+        this->list[w - 1] = nstr_cpy(str);
+        if (this->list[w - 1] == NULL)
+            return (clearlist(this, w - 1), NULL);
+        str->start = str->end;
+    }
+    dtor(&str);
+    return (this);
+}
+
+t_string    nsplit(t_string this, char delimitator)
+{
+    t_string    newlist;
+
+    if (this->list)
+        clearlist(this, 0);
+    newlist = nstr_cpy(this);
+    if (!newlist)
+        return (NULL);
+    if (split(newlist, delimitator))
+        return (newlist);
+    else
+    {
+        dtor(&newlist);
+        return (NULL);
+    }
 }

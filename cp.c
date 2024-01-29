@@ -11,6 +11,7 @@ t_string str_cpy(t_string this)
     {
         new->mask = 1;
         new->data = this->data;
+        new->start = this->start;
         new->end = this->end;
         new->data_len = this->data_len;
     }
@@ -27,6 +28,7 @@ t_string str_ncpy(t_string this, size_t  size)
     if (new)
     {
         new->mask = 1;
+        new->start = this->start;
         new->data = this->data;
         if (size < this->end)
             new->end = size;

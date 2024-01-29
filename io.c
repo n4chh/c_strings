@@ -36,6 +36,19 @@ void printfd(t_string this, int  fd)
     }
 }
 
+void    printlist(t_string this)
+{
+    size_t  i;
+
+    i = 0;
+    while (i < this->list_size)
+    {
+        print(this->list[i]);
+        i++;
+        write(1, "\n", 1);
+    }
+}
+
 // void    getfunc_io(t_string this)
 // {
 //     this->print = print;
