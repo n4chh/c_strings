@@ -1,52 +1,65 @@
-# include "libstrings.h"
+#include "libstrings.h"
 
-void print(t_string  this)
+void	print(t_string this)
 {
-    size_t     i;
+	size_t	i;
 
-    i = this->start;
-    while (i < this->end)
-    {
-        write(1, &this->data[i], 1);
-        i++;
-    }
+	i = this->start;
+	while (i < this->end)
+	{
+		write(1, &this->data[i], 1);
+		i++;
+	}
 }
 
-void printe(t_string  this)
+void	printe(t_string this)
 {
-    size_t     i;
+	size_t	i;
 
-    i = this->start;
-    while (i < this->end)
-    {
-        write(2, &this->data[i], 1);
-        i++;
-    }
+	i = this->start;
+	while (i < this->end)
+	{
+		write(2, &this->data[i], 1);
+		i++;
+	}
 }
 
-void printfd(t_string this, int  fd)
+void	printfd(t_string this, int fd)
 {
-    size_t     i;
+	size_t	i;
 
-    i = this->start;
-    while (i < this->end)
-    {
-        write(fd, &this->data[i], 1);
-        i++;
-    }
+	i = this->start;
+	while (i < this->end)
+	{
+		write(fd, &this->data[i], 1);
+		i++;
+	}
 }
 
-void    printlist(t_string this)
+void	printlist(t_string this)
 {
-    size_t  i;
+	size_t	i;
 
-    i = 0;
-    while (i < this->list_size)
-    {
-        print(this->list[i]);
-        i++;
-        write(1, "\n", 1);
-    }
+	i = 0;
+	while (i < this->list_size)
+	{
+		print(this->list[i]);
+		i++;
+		write(1, "\n", 1);
+	}
+}
+
+void	printnl(t_string this)
+{
+	size_t	i;
+
+	i = this->start;
+	while (i < this->end)
+	{
+		write(1, &this->data[i], 1);
+		i++;
+	}
+	write(1, "\n", 1);
 }
 
 // void    getfunc_io(t_string this)

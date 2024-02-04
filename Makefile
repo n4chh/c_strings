@@ -15,7 +15,9 @@ CFLAGS = -Wall -Wextra -Werror -I $(INCDIR)
 SRCS =	\
 		io.c \
 		cp.c \
+		cmp.c \
 		split.c \
+		utils.c \
 		strings.c 
 
 
