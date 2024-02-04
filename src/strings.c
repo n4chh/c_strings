@@ -12,7 +12,7 @@ void	dtor(t_string *this)
 {
 	if (!this || !(*this))
 		return ((void)"");
-	if (!(*this)->mask && (*this)->data)
+	if (!(*this)->isson && (*this)->data)
 		free((*this)->data);
 	if ((*this)->list)
 		clearlist(*this, 0);
@@ -31,7 +31,7 @@ void	ctor(t_string *this, char *data)
 		(*this)->start = 0;
 		(*this)->end = 0;
 		(*this)->data_len = 0;
-		(*this)->mask = 0;
+		(*this)->isson = 0;
 		(*this)->list = NULL;
 		(*this)->list_size = 0;
 		if (data)

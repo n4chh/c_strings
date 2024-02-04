@@ -12,3 +12,11 @@ Si por el contrario el segundo parametro es nulo, el miembro `data` no poseera v
 
 Todas las funciones que generan instancias de la estructura `t_string` poseen una réplica exacta de ellas precedidas por una "n". Por defecto las funciones que devuelven una instancia `t_string`, generan una dependencia entre la string padre y la nueva string generada. Esto se debe a que dichas funciones NO efectuan una reserva para el miembro `data`, si no que referencian dicho miembro con el del padre haciendo que ambos miembros guarden la misma dirección de memoria. Como las strings poseen más información sobre ellas como dónde empiezan y dónde terminan, las reservas iniciales de las variables de tipo `char *` alojadas en los miembros `data` pueden ser reutilizadas. Si el programador decide eliminar una string padre de la cual dependen otras strings, puede generar un comportameinto indefinido. Esto implica que el programador debe poner atención en eliminar un padre solo y solo si el resto de strings dependientes a el han sido ya eliminadas. 
 Para evitar este tipo de preocupaciones, las funciones precedidas por una "n" (acrónimo de new) haran también una reserva y una copía del miembro "data" en la nueva instancia `t_string` una vez realizada la ejecución de cada función. Esto incrementa el numero de llamadas a `malloc()`
+
+Además, todas las funciones que comienzen con el prefijo 'p_', dan soporte a recibir como segundo parámetro strings del tipo `char *`. Esto habilita la opción de utilizar strings definidas dentro del mismo código usando las comillas dobles.
+Ejemplo:
+```c
+t_string palabras;
+
+p_split(palabras, " ");
+```

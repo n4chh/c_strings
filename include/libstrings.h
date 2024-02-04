@@ -22,19 +22,23 @@ t_string				nstr_cpy(t_string this);
 t_string				nstr_ncpy(t_string this, size_t size);
 //  cmp.c
 long int				str_cmp(t_string one, t_string two);
-long int				pstr_cmp(t_string one, char *two);
+long int				p_str_cmp(t_string one, char *two);
 long int				str_ncmp(t_string one, t_string two, size_t max);
-long int				pstr_ncmp(t_string one, char *two, size_t max);
+long int				p_str_ncmp(t_string one, char *two, size_t max);
 long int				endswith(t_string this, t_string s_suffix,
 							char *p_suffix);
 //  split.c
 t_string				split(t_string this, t_string delimitator);
-t_string				nsplit(t_string this, char delimitator);
+t_string				nsplit(t_string this, t_string delimitator);
 void					clearlist(t_string this, size_t size);
+// psplit.c
+t_string				p_split(t_string this, char *delimitator);
+t_string				p_nsplit(t_string this, char *delimitator);
 // utils.c
 void					findword(t_string this, t_string delimitator);
-void					pfindword(t_string this, char *delimitator);
+void					p_findword(t_string this, char *delimitator);
 size_t					len(t_string this);
+size_t					p_len(char	*str);
 
 struct					s_str
 {
@@ -42,7 +46,7 @@ struct					s_str
 	size_t				end;
 	char				*data;
 	size_t				data_len;
-	char				mask;
+	char				isson;
 	t_string			*list;
 	size_t				list_size;
 };

@@ -23,7 +23,7 @@ long int	str_cmp(t_string one, t_string two)
 	return (-1);
 }
 
-long int	pstr_cmp(t_string one, char *two)
+long int	p_str_cmp(t_string one, char *two)
 {
 	size_t	ione;
 	size_t	itwo;
@@ -69,7 +69,7 @@ long int	str_ncmp(t_string one, t_string two, size_t max)
 	return (-1);
 }
 
-long int	pstr_ncmp(t_string one, char *two, size_t max)
+long int	p_str_ncmp(t_string one, char *two, size_t max)
 {
 	size_t	ione;
 	size_t	itwo;
@@ -109,7 +109,7 @@ long int	endswith(t_string this, t_string s_suffix, char *p_suffix)
 		while (p_suffix[len] != 0)
 			len++;
 		this->start = this->end - len;
-		pos = pstr_cmp(this, p_suffix);
+		pos = p_str_cmp(this, p_suffix);
 	}
 	else
 		pos = 0;

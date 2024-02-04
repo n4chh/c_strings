@@ -17,6 +17,7 @@ SRCS =	\
 		cp.c \
 		cmp.c \
 		split.c \
+		p_split.c \
 		utils.c \
 		strings.c 
 

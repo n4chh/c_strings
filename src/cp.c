@@ -9,7 +9,7 @@ t_string	str_cpy(t_string this)
 	ctor(&new, NULL);
 	if (new)
 	{
-		new->mask = 1;
+		new->isson = 1;
 		new->data = this->data;
 		new->start = this->start;
 		new->end = this->end;
@@ -27,7 +27,7 @@ t_string	str_ncpy(t_string this, size_t size)
 	ctor(&new, NULL);
 	if (new)
 	{
-		new->mask = 1;
+		new->isson = 1;
 		new->start = this->start;
 		new->data = this->data;
 		if (size < this->end)
