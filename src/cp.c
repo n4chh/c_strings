@@ -1,4 +1,4 @@
-#include "strings.h"
+#include "libstrings.h"
 
 t_string str_cpy(t_string this)
 {

@@ -1,31 +1,31 @@
-# include "strings.h"
+# include "libstrings.h"
 
-static int wordcount(t_string   this, char  delimitator)
+// static int wordcount(t_string   this, char  *delimitator)
+static int wordcount(t_string   this, t_string  delimitator)
 {
     int     words;
-    size_t  i;
+    size_t  init_start;
+    size_t  del_len;
 
     words = 0;
-    i = this->start;
-    while (i < this->end)
+    init_start = this->start;
+    del_len = len(delimitator);
+    while (init_start < this->end)
     {
-        if (this->data[i] != delimitator
-            && (i == this->end - 1
-            || this->data[i + 1] == delimitator))
-            words++;
-        i++;
+        if (str_ncmp(this, delimitator, del_len) > 0)
+            if (this->start++ == this->end - 1
+                || str_ncmp(this, delimitator, del_len) == 0)
+                words++;
+        else
+            this->start++;
+        // if (this->data[init_start] != delimitator
+            // && (init_start == this->end - 1
+            // || this->data[init_start + 1] == delimitator))
+            // words++;
+        //  this->start++;
     }
+    this->start = init_start;
     return (words);
-}
-
-void    findword(t_string   this, char  delimitator, t_string   word)
-{
-    while (this->data[word->start + this->start] == delimitator)
-        word->start++;
-    word->end = word->start + this->start;
-    while (word->end < this->end 
-        && this->data[word->end] != delimitator)
-        word->end++;
 }
 
 void    clearlist(t_string this, size_t size)
@@ -41,7 +41,7 @@ void    clearlist(t_string this, size_t size)
     
 }
 
-t_string    split(t_string this, char delimitator)
+t_string    split(t_string this, t_string delimitator)
 {
     size_t      w;
     t_string    str;

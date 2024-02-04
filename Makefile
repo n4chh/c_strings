@@ -1,4 +1,4 @@
-NAME= strings.a
+NAME= libstrings.a
 
 CC = gcc
 AR = ar
@@ -26,12 +26,12 @@ all: $(NAME)
 
 sanitize: CFLAGS += -fsanitize=address -g3 
 sanitize: $(OBJS) 
-	@echo "[strings]->>\033[34m [◊] SANITIZE MODE ON [◊]\033[0m"
+	@echo "[libstrings]->>\033[34m [◊] SANITIZE MODE ON [◊]\033[0m"
 	$(AR) $(ARFLAGS) $(NAME) $^
 	
 debug: CFLAGS += -g3
 debug: $(OBJS)
-	@echo "[strings]->> \033[33m [∆] DEBUG MODE ON [∆]\033[0m"
+	@echo "[libstrings]->> \033[33m [∆] DEBUG MODE ON [∆]\033[0m"
 	$(AR) $(ARFLAGS) $(NAME) $^
 
 $(NAME): $(OBJS)

@@ -1,4 +1,4 @@
-# include "strings.h"
+# include "libstrings.h"
 
 // static void getfunc(t_string this)
 // {

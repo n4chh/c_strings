@@ -1,4 +1,4 @@
-# include "strings.h"
+# include "libstrings.h"
 
 void print(t_string  this)
 {
