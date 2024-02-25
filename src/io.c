@@ -3,12 +3,15 @@
 void	print(t_string this)
 {
 	size_t	i;
-
-	i = this->start;
-	while (i < this->end)
+	
+	if (this && this->data)
 	{
-		write(1, &this->data[i], 1);
-		i++;
+		i = this->start;
+		while (i < this->end)
+		{
+			write(1, &this->data[i], 1);
+			i++;
+		}
 	}
 }
 
@@ -16,11 +19,14 @@ void	printe(t_string this)
 {
 	size_t	i;
 
-	i = this->start;
-	while (i < this->end)
+	if (this && this->data)
 	{
-		write(2, &this->data[i], 1);
-		i++;
+		i = this->start;
+		while (i < this->end)
+		{
+			write(2, &this->data[i], 1);
+			i++;
+		}
 	}
 }
 
@@ -28,24 +34,14 @@ void	printfd(t_string this, int fd)
 {
 	size_t	i;
 
-	i = this->start;
-	while (i < this->end)
+	if (this && this->data)
 	{
-		write(fd, &this->data[i], 1);
-		i++;
-	}
-}
-
-void	printlist(t_string this)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < this->list_size)
-	{
-		print(this->list[i]);
-		i++;
-		write(1, "\n", 1);
+		i = this->start;
+		while (i < this->end)
+		{
+			write(fd, &this->data[i], 1);
+			i++;
+		}
 	}
 }
 
@@ -53,11 +49,14 @@ void	printnl(t_string this)
 {
 	size_t	i;
 
-	i = this->start;
-	while (i < this->end)
+	if (this && this->data)
 	{
-		write(1, &this->data[i], 1);
-		i++;
+		i = this->start;
+		while (i < this->end)
+		{
+			write(1, &this->data[i], 1);
+			i++;
+		}
 	}
 	write(1, "\n", 1);
 }

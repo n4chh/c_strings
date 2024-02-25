@@ -2,74 +2,49 @@
 
 t_string	str_cpy(t_string this)
 {
-	t_string	new;
-
-	if (!this)
-		return (NULL);
-	ctor(&new, NULL);
-	if (new)
-	{
-		new->isson = 1;
-		new->data = this->data;
-		new->start = this->start;
-		new->end = this->end;
-		new->data_len = this->data_len;
-	}
-	return (new);
-}
-
-t_string	str_ncpy(t_string this, size_t size)
-{
-	t_string	new;
-
-	if (!this)
-		return (NULL);
-	ctor(&new, NULL);
-	if (new)
-	{
-		new->isson = 1;
-		new->start = this->start;
-		new->data = this->data;
-		if (size < this->end)
-			new->end = size;
-		else
-			new->end = this->end;
-		new->data_len = this->data_len;
-	}
-	return (new);
-}
-
-t_string	nstr_cpy(t_string this)
-{
-	char		str[this->end + 1 - this->start];
+	char		*str;
 	size_t		i;
+	size_t		length;
 	t_string	new;
 
+	length = len(this);
+	str = malloc(length + 1);
+	if (!str)
+		return (NULL);
 	i = this->start;
 	while (i < this->end)
 	{
 		str[i - this->start] = this->data[i];
 		i++;
 	}
-	str[this->end - this->start] = 0;
+	str[length] = 0;
 	ctor(&new, str);
+	free(str);
 	return (new);
 }
 
-t_string	nstr_ncpy(t_string this, size_t size)
+t_string	str_ncpy(t_string this, size_t size)
 {
-	char		str[size + 1];
+	char		*str;
 	size_t		i;
+	size_t		length;
 	t_string	new;
 
 	i = this->start;
-	while (i < this->end && (i - this->start) < size)
+	length = len(this);
+	if (length > size)
+		length = size;
+	str = malloc(length + 1);
+	if (!str)
+		return (NULL);
+	while (i < this->end && (i - this->start) < length)
 	{
 		str[i - this->start] = this->data[i];
 		i++;
 	}
-	str[i - this->start] = 0;
+	str[length] = 0;
 	ctor(&new, str);
+	free(str);
 	return (new);
 }
 

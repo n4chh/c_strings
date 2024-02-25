@@ -4,6 +4,8 @@ size_t	len(t_string this)
 {
 	size_t	length;
 
+	if (this == NULL || this->data == NULL)
+		return (0);
 	if (this->end > this->start)
 	{
 		length = this->end - this->start;
@@ -17,6 +19,8 @@ size_t	p_len(char	*str)
 {
 	size_t	length;
 
+	if (str == NULL)
+		return (0);
 	length = 0;
 	while (str[length])
 		length++;
