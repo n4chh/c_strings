@@ -18,6 +18,7 @@ SRCS =	\
 		cp.c \
 		cmp.c \
 		join.c \
+		sub.c \
 		utils.c \
 		split.c \
 		p_split.c \

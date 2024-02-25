@@ -2,19 +2,23 @@
 
 t_string    substr_rm(t_string  this, t_string substr)
 {
+    t_string    cleaned_str;
+    t_string    *cleaned_list;
 
+    cleaned_list = split(this, substr);
+    if (cleaned_list == NULL)
+        return (NULL);
+    cleaned_str = lstostr(cleaned_list);
+    return (cleaned_str);
 }
 t_string    p_substr_rm(t_string  this, char *substr)
 {
-    t_string    str;
-    size_t      i;
-    size_t      sublength;
-    t_string    new;
+    t_string    cleaned_str;
+    t_string    *cleaned_list;
 
-    i = 0;
-    sublength = p_len(substr);
-    str = this;
-    while (this->end > str->start && p_str_ncmp(str, substr, sublength))
-        str->start++;
-
+    cleaned_list = p_split(this, substr);
+    if (cleaned_list == NULL)
+        return (NULL);
+    cleaned_str = lstostr(cleaned_list);
+    return (cleaned_str);
 }
