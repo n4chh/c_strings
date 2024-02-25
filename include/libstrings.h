@@ -36,6 +36,7 @@ t_string				*nsplit(t_string this, size_t splits, size_t *position);
 //	p_split.c
 t_string				*p_split(t_string this, char *delimitator);
 void					p_printlist(t_string *this, char *separator);
+char					**strlstocharls(t_string *list);
 //	nsplit.c
 t_string				*nsplit(t_string this, size_t splits, size_t *position);
 t_string				lstostr(t_string *list);

@@ -76,3 +76,24 @@ void	p_printlist(t_string *this, char *separator)
 			write(1, separator, sep_len);
 	}
 }
+
+char	**strlstocharls(t_string *list)
+{
+	size_t	list_size;
+	char	**strlist;
+
+	list_size = 0;
+	while (list[list_size] != NULL)
+		list_size++;
+	strlist = malloc(sizeof(char *) * (list_size + 1));
+	if (!strlist)
+		return (NULL);
+	list_size = 0;
+	while (list[list_size] != NULL)
+	{
+		strlist[list_size] = list[list_size]->data;
+		list_size++;
+	}
+	strlist[list_size] = NULL;
+	return (strlist);
+}
