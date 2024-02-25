@@ -32,12 +32,13 @@ void	ctor(t_string *this, char *data)
 		{
 			while (data[(*this)->end])
 				(*this)->end++;
-			(*this)->data = malloc(sizeof(char) * (*this)->end);
+			(*this)->data = malloc(sizeof(char) * ((*this)->end + 1));
 			while ((*this)->data && data[(*this)->data_len])
 			{
 				(*this)->data[(*this)->data_len] = data[(*this)->data_len];
 				(*this)->data_len++;
 			}
+			(*this)->data[(*this)->data_len] = 0;
 		}
 	}
 }

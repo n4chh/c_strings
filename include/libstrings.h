@@ -24,18 +24,25 @@ long int				p_str_cmp(t_string one, char *two);
 long int				p_str_ncmp(t_string one, char *two, size_t max);
 long int				endswith(t_string this, t_string s_suffix,
 							char *p_suffix);
+//	join.c
+t_string				str_joinfront(t_string this, t_string preffix);
+t_string				p_str_joinfront(t_string this, char *preffix);
+t_string				str_joinback(t_string this, t_string suffix);
+t_string				p_str_joinback(t_string this, char *suffix);
 //  split.c
 t_string				*split(t_string this, t_string delimitator);
 void					printlist(t_string *this, t_string separator);
 t_string				*nsplit(t_string this, size_t splits, size_t *position);
-// psplit.c
+//	p_split.c
 t_string				*p_split(t_string this, char *delimitator);
 void					p_printlist(t_string *this, char *separator);
-// sub.c
-
+//	nsplit.c
+t_string				*nsplit(t_string this, size_t splits, size_t *position);
+t_string				lstostr(t_string *list);
+//	sub.c
 t_string    substr_rm(t_string  this, t_string substr);
 t_string    p_substr_rm(t_string  this, char *substr);
-// rm.c
+//	rm.c
 void					clearlist(t_string *this);
 // utils.c
 void					findword(t_string this, t_string delimitator);
