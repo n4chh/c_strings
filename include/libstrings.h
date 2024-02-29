@@ -41,8 +41,10 @@ char					**strlstocharls(t_string *list);
 t_string				*nsplit(t_string this, size_t splits, size_t *position);
 t_string				lstostr(t_string *list);
 //	sub.c
-t_string    substr_rm(t_string  this, t_string substr);
-t_string    p_substr_rm(t_string  this, char *substr);
+t_string    			substr_rm(t_string  this, t_string substr);
+t_string    			p_substr_rm(t_string  this, char *substr);
+long					substr(t_string this, t_string substr);
+long    				p_substr(t_string this, char *substr);
 //	rm.c
 void					clearlist(t_string *this);
 // utils.c
