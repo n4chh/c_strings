@@ -32,14 +32,14 @@ LDFLAGS = -L . -l$(NAME)
 
 OBJS := $(addprefix $(OBJDIR)/,$(SRCS:%.c=%.o))
 
-all: $(NAME)
+all: testing
 
 sanitize: CFLAGS += -fsanitize=address -g3 
 sanitize: $(OBJS) 
 	@echo "[libstrings]->>\033[34m [◊] SANITIZE MODE ON [◊]\033[0m"
 	$(AR) $(ARFLAGS) $(FILENAME) $^
 
-debug: $(OBJS)
+libdebug: $(OBJS)
 	@echo "[libstrings]->> \033[33m [∆] DEBUG MODE ON [∆]\033[0m"
 	$(AR) $(ARFLAGS) $(FILENAME) $^
 
@@ -57,10 +57,38 @@ main: $(MAIN) $(NAME)
 	$(CC) $(CFLAGS) $(LDFLAGS) $< -o main
 
 
-clean:
+
+
+#
+#	---{[############}-CPPUTEST-{############]}---
+#
+MAKEFILE_DIR=.
+PROJECT_DIR=.
+TEST_DIR=test
+
+CPPUTEST_HOME=$(TEST_DIR)/cpputest
+CPPUTEST_PEDANTIC_ERRORS=N
+CPPUTEST_OBJS_DIR=$(TEST_DIR)/objs
+CPPUTEST_LIB_DIR=$(TEST_DIR)/lib
+CPPFLAGS += -I$(CPPUTEST_HOME)/include
+LD_LIBRARIES = -L$(CPPUTEST_HOME)/lib -lCppUTest
+SRC_DIRS=$(PROJECT_DIR)/src
+INCLUDE_DIRS=$(PROJECT_DIR)/include
+INCLUDE_DIRS+=$(CPPUTEST_HOME)/include
+COMPONENT_NAME=strings
+TEST_SRC_DIRS=$(TEST_DIR)/test_srcs
+
+include $(CPPUTEST_HOME)/build/MakefileWorker.mk
+testing: $(TEST_TARGET) 
+	./$(TEST_TARGET) -c
+
+#
+# 	---{[####################################]}---
+# 
+libclean:
 	$(RM) $(OBJDIR)
 
-fclean: clean
+fclean: libclean
 	$(RM) $(NAME)
 
 re: fclean all
