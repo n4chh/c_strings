@@ -1,0 +1,6 @@
+.DS_Store
+build
+libstrings.a
+test/objs
+test/lib
+strings_tests
