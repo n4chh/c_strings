@@ -14,7 +14,7 @@ static int	checkranges(t_string string, size_t splits, size_t *positions)
 		i++;
 	}
 	i--;
-	if (string->end < positions[i])
+	if (positions && string->end < positions[i])
 		return (0);
 	return (1);
 }

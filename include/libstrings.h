@@ -8,7 +8,7 @@ typedef struct s_str	*t_string;
 
 //  stirng.c
 void					dtor(t_string *string);
-void					ctor(t_string *string, char *data);
+void					ctor(t_string *string, const char *data);
 //  io.c
 void					print(t_string string);
 void					printe(t_string string);
