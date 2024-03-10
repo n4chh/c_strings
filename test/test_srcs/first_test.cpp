@@ -16,8 +16,11 @@ TEST(lexer_test, init) {
 TEST(lexer_test, checkSimple)
 {
     t_string test, cpy;
-    ctor(&test, (char*)"hola hola");
-    cpy = str_cpy(test);
+    ctor(&test, (char*)"hola muy buenas hola hola");
+    cpy = p_strtrim(test, "hola");
+    printnl(test);
+    printnl(cpy);
+    
     CHECK_COMPARE_TEXT(test->data_len, ==, cpy->data_len, "Checking data_lenght");
     CHECK_TEXT(-1 == str_cmp(test, cpy), "Checking data with str_cmp");
     dtor(&test);

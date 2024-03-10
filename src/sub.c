@@ -11,7 +11,7 @@ t_string    substr_rm(t_string  string, t_string substr)
     cleaned_str = lstostr(cleaned_list);
     return (cleaned_str);
 }
-t_string    p_substr_rm(t_string  string, char *substr)
+t_string    p_substr_rm(t_string  string, const char *substr)
 {
     t_string    cleaned_str;
     t_string    *cleaned_list;
@@ -49,7 +49,7 @@ long    substr(t_string string, t_string substr)
     return (-1);
 }
 
-long    p_substr(t_string string, char *substr)
+long    p_substr(t_string string, const char *substr)
 {
     size_t  start;
     size_t  substr_l;

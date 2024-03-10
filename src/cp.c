@@ -47,9 +47,3 @@ t_string	str_ncpy(t_string string, size_t size)
 	free(str);
 	return (new);
 }
-
-// void    getfunc_cp(t_string string)
-// {
-//     string->strcpy = strcpy;
-//     string->strncpy = strncpy;
-// }

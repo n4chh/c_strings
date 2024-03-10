@@ -27,7 +27,7 @@ t_string				str_joinfront(t_string string, t_string preffix)
     return (new);
 }
 
-t_string				p_str_joinfront(t_string string, char *preffix)
+t_string				p_str_joinfront(t_string string, const char *preffix)
 {
     size_t      length;
     size_t      i;
@@ -83,7 +83,7 @@ t_string				str_joinback(t_string string, t_string suffix)
     return (new);
 }
 
-t_string				p_str_joinback(t_string string, char *suffix)
+t_string				p_str_joinback(t_string string, const char *suffix)
 {
     size_t      length;
     size_t      i;

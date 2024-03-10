@@ -10,3 +10,38 @@ void	clearlist(t_string **string)
 	free(*string);
 	*string = NULL;
 }
+
+void	p_strrmsuffix(t_string string, const char *delimitator)
+{
+	size_t	start;	
+	size_t	del_len;
+
+	del_len = p_len(delimitator);	
+	if (del_len > string->end)
+		return ;
+	start = string->start;
+	string->start = string->end - del_len;
+	while ( string->start - del_len < string->end
+		&& p_str_ncmp(string, delimitator, del_len) == -1)
+	{
+		string->end -= del_len;
+		string->start -= del_len;	
+	}
+	string->start = start;
+}
+
+t_string	p_strtrim(t_string string, const char *delimitator)
+{
+	t_string	trimed;
+	size_t		start;
+	size_t		end;
+
+	start = string->start;
+	end = string->end;
+	p_findword(string, delimitator);
+	p_strrmsuffix(string, delimitator);
+	trimed = str_cpy(string);
+	string->start = start;
+	string->end = end ;
+	return (trimed);
+}
