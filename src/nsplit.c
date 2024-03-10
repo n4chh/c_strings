@@ -13,7 +13,8 @@ static int	checkranges(t_string string, size_t splits, size_t *positions)
 			return (0);
 		i++;
 	}
-	i--;
+	if (i != 0)
+		i--;
 	if (positions && string->end < positions[i])
 		return (0);
 	return (1);

@@ -46,7 +46,7 @@ t_string    			p_substr_rm(t_string  string, char *substr);
 long					substr(t_string string, t_string substr);
 long    				p_substr(t_string string, char *substr);
 //	rm.c
-void					clearlist(t_string *string);
+void					clearlist(t_string **string);
 // utils.c
 void					findword(t_string string, t_string delimitator);
 void					p_findword(t_string string, char *delimitator);
