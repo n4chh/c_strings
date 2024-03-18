@@ -23,7 +23,7 @@ long int	str_cmp(t_string one, t_string two)
 	return (-1);
 }
 
-long int	p_str_cmp(t_string one, char *two)
+long int	p_str_cmp(t_string one, const char *two)
 {
 	size_t	ione;
 	size_t	itwo;
@@ -69,7 +69,7 @@ long int	str_ncmp(t_string one, t_string two, size_t max)
 	return (-1);
 }
 
-long int	p_str_ncmp(t_string one, char *two, size_t max)
+long int	p_str_ncmp(t_string one, const char *two, size_t max)
 {
 	size_t	ione;
 	size_t	itwo;

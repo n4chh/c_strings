@@ -8,7 +8,7 @@ char    get(t_string string, size_t index)
         return (string->data[string->start + index]);
 }
 
-char   set(t_string string, size_t index, char value)
+char   set(t_string string, size_t index, const char value)
 {
     if (string->start + index > string->end)
         return ('\0');

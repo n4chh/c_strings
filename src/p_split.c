@@ -1,7 +1,7 @@
 #include "libstrings.h"
 
 // static int wordcount(t_string   string, char  *delimitator)
-static size_t	wordcount(t_string string, char *delimitator)
+static size_t	wordcount(t_string string, const char *delimitator)
 {
 	size_t		words;
 	size_t		init_start;
@@ -32,7 +32,7 @@ static void	rclearlist(t_string *string, size_t	size)
 	string = NULL;
 }
 
-t_string	*p_split(t_string string, char *delimitator)
+t_string	*p_split(t_string string, const char *delimitator)
 {
 	size_t		w;
 	size_t		list_size;
@@ -61,7 +61,7 @@ t_string	*p_split(t_string string, char *delimitator)
 	return (list);
 }
 
-void	p_printlist(t_string *string, char *separator)
+void	p_printlist(t_string *string, const char *separator)
 {
 	size_t	i;
 	size_t	sep_len;

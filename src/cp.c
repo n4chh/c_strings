@@ -7,6 +7,8 @@ t_string	str_cpy(t_string string)
 	size_t		length;
 	t_string	new;
 
+	if (!string || !string->data)
+		return (NULL);
 	length = len(string);
 	str = malloc(length + 1);
 	if (!str)
@@ -30,6 +32,8 @@ t_string	str_ncpy(t_string string, size_t size)
 	size_t		length;
 	t_string	new;
 
+	if (!string || !string->data)
+		return (NULL);
 	i = string->start;
 	length = len(string);
 	if (length > size)
@@ -47,9 +51,3 @@ t_string	str_ncpy(t_string string, size_t size)
 	free(str);
 	return (new);
 }
-
-// void    getfunc_cp(t_string string)
-// {
-//     string->strcpy = strcpy;
-//     string->strncpy = strncpy;
-// }

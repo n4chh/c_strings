@@ -18,7 +18,7 @@ void	dtor(t_string *string)
 	*string = NULL;
 }
 
-void	ctor(t_string *string, char *data)
+void	ctor(t_string *string, const char *data)
 {
 	if (!string)
 		return ;

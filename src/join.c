@@ -11,7 +11,7 @@ t_string				str_joinfront(t_string string, t_string preffix)
     if (new == NULL)
         return (new);
     length = len(new) + len(preffix);
-    data = malloc(length * 1);
+    data = malloc(length + 1);
     if (!data)
         return (NULL);
     i = preffix->start;
@@ -19,7 +19,8 @@ t_string				str_joinfront(t_string string, t_string preffix)
         data[i - 1] = preffix->data[i - 1];
     i = new->start;
     while (i++ < new->end)
-        data[i + preffix->end - 1] = new->data[i - 1];
+        data[i + preffix->end - new->start - 1] = new->data[i - 1];
+    data[length] = 0;
     free(new->data);
     new->data = data;
     new->data_len = length;
@@ -27,7 +28,7 @@ t_string				str_joinfront(t_string string, t_string preffix)
     return (new);
 }
 
-t_string				p_str_joinfront(t_string string, char *preffix)
+t_string				p_str_joinfront(t_string string, const char *preffix)
 {
     size_t      length;
     size_t      i;
@@ -39,7 +40,7 @@ t_string				p_str_joinfront(t_string string, char *preffix)
     if (new == NULL)
         return (new);
     length = len(new) + p_len(preffix);
-    data = malloc(length * 1);
+    data = malloc(length + 1);
     if (!data)
         return (NULL);
     i = 0;
@@ -49,6 +50,7 @@ t_string				p_str_joinfront(t_string string, char *preffix)
     new_i = new->start;
     while (new_i++ < new->end)
         data[new_i + i - 1] = new->data[new_i - 1];
+    data[length] = 0;
     free(new->data);
     new->data = data;
     new->data_len = length;
@@ -67,15 +69,17 @@ t_string				str_joinback(t_string string, t_string suffix)
     if (new == NULL)
         return (new);
     length = len(new) + len(suffix);
-    data = malloc(length * 1);
+    data = malloc(sizeof(char)*(length + 1));
     if (!data)
         return (NULL);
     i = new->start;
+    printnl(suffix);
     while (i++ < new->end)
         data[i - 1] = new->data[i - 1];
     i = suffix->start;
     while (i++ < suffix->end)
-        data[i + new->end - 1] = suffix->data[i - 1];
+        data[i + new->end - suffix->start - 1] = suffix->data[i - 1];
+    data[length] = 0;
     free(new->data);
     new->data = data;
     new->data_len = length;
@@ -83,7 +87,7 @@ t_string				str_joinback(t_string string, t_string suffix)
     return (new);
 }
 
-t_string				p_str_joinback(t_string string, char *suffix)
+t_string				p_str_joinback(t_string string, const char *suffix)
 {
     size_t      length;
     size_t      i;
@@ -94,7 +98,7 @@ t_string				p_str_joinback(t_string string, char *suffix)
     if (new == NULL)
         return (new);
     length = len(new) + p_len(suffix);
-    data = malloc(length * 1);
+    data = malloc(length + 1);
     if (!data)
         return (NULL);
     i = new->start;
@@ -103,6 +107,7 @@ t_string				p_str_joinback(t_string string, char *suffix)
     i = 0;
     while (suffix[i++])
         data[i + new->end - 1] = suffix[i - 1];
+    data[length] = 0;
     free(new->data);
     new->data = data;
     new->data_len = length;
