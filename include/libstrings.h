@@ -3,6 +3,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
 
 typedef struct s_str	*t_string;
 
@@ -49,6 +50,7 @@ long    				p_substr(t_string string, const char *substr);
 void					clearlist(t_string **string);
 void					p_strrmsuffix(t_string string, const char *delimitator);
 t_string				p_strtrim(t_string string, const char *delimitator);
+t_string				str_rmpos(t_string string, size_t start, size_t end);
 // utils.c
 void					findword(t_string string, t_string delimitator);
 void					p_findword(t_string string, const char *delimitator);

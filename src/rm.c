@@ -30,6 +30,30 @@ void	p_strrmsuffix(t_string string, const char *delimitator)
 	string->start = start;
 }
 
+t_string	str_rmpos(t_string	string, size_t start, size_t end)
+{
+	size_t		str_start;
+	size_t		str_end;
+	t_string	left_half;
+	t_string	cleared_str;
+	
+	str_start = string->start;
+	str_end = string->end;
+	string->end = start;
+	left_half = str_cpy(string);
+	if (!left_half)
+		return (NULL);
+	string->end = str_end;
+	printnl(left_half);
+	string->start = end + 1;
+	printnl(string);
+	cleared_str = str_joinback(left_half, string);
+	dtor(&left_half);
+	string->start = str_start;
+	printnl(string);
+	return (cleared_str);
+}
+
 t_string	p_strtrim(t_string string, const char *delimitator)
 {
 	t_string	trimed;

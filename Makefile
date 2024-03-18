@@ -79,7 +79,7 @@ COMPONENT_NAME=strings
 TEST_SRC_DIRS=$(TEST_DIR)/test_srcs
 
 include $(CPPUTEST_HOME)/build/MakefileWorker.mk
-testing: $(TEST_TARGET) 
+unitest: $(TEST_TARGET) 
 	./$(TEST_TARGET) -c
 
 #
