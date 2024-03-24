@@ -37,6 +37,8 @@ t_string	str_rmpos(t_string	string, size_t start, size_t end)
 	t_string	left_half;
 	t_string	cleared_str;
 	
+	if (start > end || end > string->end)
+		return (NULL);
 	str_start = string->start;
 	str_end = string->end;
 	string->end = start;
@@ -44,13 +46,10 @@ t_string	str_rmpos(t_string	string, size_t start, size_t end)
 	if (!left_half)
 		return (NULL);
 	string->end = str_end;
-	printnl(left_half);
 	string->start = end + 1;
-	printnl(string);
 	cleared_str = str_joinback(left_half, string);
 	dtor(&left_half);
 	string->start = str_start;
-	printnl(string);
 	return (cleared_str);
 }
 

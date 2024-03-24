@@ -1,18 +1,11 @@
 #include "libstrings.h"
 
-// static void getfunc(t_string string)
-// {
-//     if (!string)
-//         return ((void)"");
-//     getfunc_io(string);
-//     getfunc_cp(string);
-// }
-
 void	dtor(t_string *string)
 {
-	if (!string || !(*string))
+	if (!string || !(*string) )
 		return ;
-	free((*string)->data);
+	if ((*string)->data)
+		free((*string)->data);
 	(*string)->data = NULL;
 	free(*string);
 	*string = NULL;

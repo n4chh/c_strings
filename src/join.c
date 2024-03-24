@@ -73,7 +73,6 @@ t_string				str_joinback(t_string string, t_string suffix)
     if (!data)
         return (NULL);
     i = new->start;
-    printnl(suffix);
     while (i++ < new->end)
         data[i - 1] = new->data[i - 1];
     i = suffix->start;
