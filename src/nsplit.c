@@ -84,3 +84,31 @@ t_string	lstostr(t_string *list)
 	str->data[length] = 0;
 	return (str);
 }
+
+t_string	*pos_split(t_string	string, size_t position[][2])
+{
+	t_string	*list;
+	t_string	cur;
+	size_t		size;
+
+	size = 0;
+	if (!string || !string->data || !position || !*position)
+		return (NULL);
+	while (position[size] != NULL)
+		size++;
+	cur = str_cpy(string);
+	list = (t_string *) malloc(sizeof(t_string) * (size + 1));
+	if (list == NULL || cur == NULL)
+		return (NULL);
+	size = 0;
+	while (position[size])
+	{
+		cur->start = position[size][0];
+		cur->end = position[size][1];
+		list[size] = str_cpy(cur);
+		if (list[size] == NULL)
+			return (dtor(&cur), rclearlist(list, --size), NULL);
+		size++;
+	}
+	return (list[size] = NULL, dtor(&cur), list);
+}

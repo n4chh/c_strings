@@ -40,6 +40,7 @@ void					p_printlist(t_string *string, const char *separator);
 char					**strlstocharls(t_string *list);
 //	nsplit.c
 t_string				*nsplit(t_string string, size_t splits, size_t *position);
+t_string				*pos_split(t_string string, size_t position[][2]);
 t_string				lstostr(t_string *list);
 //	sub.c
 t_string    			substr_rm(t_string  string, t_string substr);
