@@ -5,9 +5,9 @@ long int	str_cmp(t_string one, t_string two)
 	size_t	ione;
 	size_t	itwo;
 
-	if (!one || !one->data)
+	if (one == NULL || one->data == NULL)
 		return (0);
-	if (!two || !two->data)
+	if (two == NULL || two->data == NULL)
 		return (0);
 	ione = one->start;
 	itwo = two->start;
@@ -28,7 +28,7 @@ long int	p_str_cmp(t_string one, const char *two)
 	size_t	ione;
 	size_t	itwo;
 
-	if (!one || !one->data)
+	if (one == NULL || one->data == NULL)
 		return (0);
 	ione = one->start;
 	itwo = 0;
@@ -49,12 +49,12 @@ long int	str_ncmp(t_string one, t_string two, size_t max)
 	size_t	ione;
 	size_t	itwo;
 
-	if (!one || !one->data)
+	if (one == NULL || one->data == NULL)
 		return (0);
-	if (!two || !two->data)
+	if (two == NULL || two->data == NULL)
 		return (0);
 	ione = one->start;
-	itwo = two->start;
+	 itwo = two->start;
 	while (ione < one->end && itwo < two->end && ione - one->start < max)
 	{
 		if (one->data[ione] != two->data[itwo])
@@ -74,7 +74,7 @@ long int	p_str_ncmp(t_string one, const char *two, size_t max)
 	size_t	ione;
 	size_t	itwo;
 
-	if (!one || !one->data)
+	if (one == NULL || one->data == NULL)
 		return (0);
 	ione = one->start;
 	itwo = 0;

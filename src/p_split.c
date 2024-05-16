@@ -9,7 +9,7 @@ static size_t	wordcount(t_string string, const char *delimitator)
 
 	words = 0;
 	next = str_cpy(string);
-	if (!next)
+	if (next == NULL)
 		return (0);
 	init_start = string->start;
 	while (next->start < next->end)
@@ -42,10 +42,10 @@ t_string	*p_split(t_string string, const char *delimitator)
 	w = 0;
 	list_size = wordcount(string, delimitator);
 	list = malloc(sizeof(t_string) * (list_size + 1));
-	if (!list)
+	if (list == NULL)
 		return (NULL);
 	str = str_cpy(string);
-	if (!str)
+	if (str == NULL)
 		return (NULL);
 	while (w++ < list_size)
 	{
@@ -66,7 +66,7 @@ void	p_printlist(t_string *string, const char *separator)
 	size_t	i;
 	size_t	sep_len;
 
-	if (!string)
+	if (string == NULL)
 		return ;
 	i = 0;
 	sep_len = p_len(separator);
@@ -84,13 +84,13 @@ char	**strlstocharls(t_string *list)
 	size_t	list_size;
 	char	**strlist;
 
-	if (!list)
+	if (list == NULL)
 		return (NULL);
 	list_size = 0;
 	while (list[list_size] != NULL)
 		list_size++;
 	strlist = malloc(sizeof(char *) * (list_size + 1));
-	if (!strlist)
+	if (strlist == NULL)
 		return (NULL);
 	list_size = 0;
 	while (list[list_size] != NULL)

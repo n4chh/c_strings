@@ -12,7 +12,7 @@ t_string				str_joinfront(t_string string, t_string preffix)
         return (new);
     length = len(new) + len(preffix);
     data = malloc(length + 1);
-    if (!data)
+    if (data == NULL)
         return (NULL);
     i = preffix->start;
     while (i++ < preffix->end)
@@ -41,7 +41,7 @@ t_string				p_str_joinfront(t_string string, const char *preffix)
         return (new);
     length = len(new) + p_len(preffix);
     data = malloc(length + 1);
-    if (!data)
+    if (data == NULL)
         return (NULL);
     i = 0;
     while (preffix[i++])
@@ -70,7 +70,7 @@ t_string				str_joinback(t_string string, t_string suffix)
         return (new);
     length = len(new) + len(suffix);
     data = malloc(sizeof(char)*(length + 1));
-    if (!data)
+    if (data == NULL)
         return (NULL);
     i = new->start;
     while (i++ < new->end)
@@ -98,7 +98,7 @@ t_string				p_str_joinback(t_string string, const char *suffix)
         return (new);
     length = len(new) + p_len(suffix);
     data = malloc(length + 1);
-    if (!data)
+    if (data == NULL)
         return (NULL);
     i = new->start;
     while (i++ < new->end)

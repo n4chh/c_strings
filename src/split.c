@@ -9,7 +9,7 @@ static size_t	wordcount(t_string string, t_string delimitator)
 
 	words = 0;
 	next = str_cpy(string);
-	if (!next)
+	if (next == NULL)
 		return (0);
 	init_start = string->start;
 	while (next->start < next->end)
@@ -42,10 +42,10 @@ t_string	*split(t_string string, t_string delimitator)
 	w = 0;
 	list_size = wordcount(string, delimitator);
 	list = malloc(sizeof(t_string) * (list_size + 1));
-	if (!list)
+	if (list == NULL)
 		return (NULL);
 	str = str_cpy(string);
-	if (!str)
+	if (str == NULL)
 		return (NULL);
 	while (w++ < list_size)
 	{
@@ -65,7 +65,7 @@ void	printlist(t_string *string, t_string separator)
 {
 	size_t	i;
 
-	if (!string)
+	if (string == NULL)
 		return ;
 	i = 0;
 	while (string[i] != NULL)
