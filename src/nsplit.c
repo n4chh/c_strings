@@ -9,7 +9,7 @@ static int	checkranges(t_string string, size_t splits, size_t *positions)
 	i = 0;
 	while (i < splits)
 	{
-		if (string->end < positions[i])
+		if (positions == NULL || string->end < positions[i])
 			return (0);
 		i++;
 	}
@@ -35,11 +35,11 @@ t_string	*nsplit(t_string string, size_t splits, size_t *position)
 
 	w = 0;
 	str = str_cpy(string);
-	if (!str || !checkranges(string, splits, position))
+	if (str == NULL || !checkranges(string, splits, position))
 		return (NULL);
 	splits++;
 	list = malloc(sizeof(t_string) * (splits + 1));
-	if (!list)
+	if (list == NULL)
 		return (dtor(&str), NULL);
 	while (w++ < splits)
 	{
@@ -63,12 +63,12 @@ t_string	lstostr(t_string *list)
 	size_t		i;
 	size_t		n;
 
-	if (!list)
+	if (list == NULL)
 		return (NULL);
 	n = 0;
 	length = 0;
 	ctor(&str, NULL);
-	if (!str)
+	if (str == NULL)
 		return (str);
 	while (list[n])
 		length += len(list[n++]);
@@ -88,27 +88,28 @@ t_string	lstostr(t_string *list)
 t_string	*pos_split(t_string	string, size_t position[][2])
 {
 	t_string	*list;
-	t_string	cur;
+	t_string	cursor;
 	size_t		size;
 
 	size = 0;
-	if (!string || !string->data || !position || !*position)
+	if (string == NULL || string->data == NULL || position  == NULL
+		|| *position == NULL)
 		return (NULL);
 	while (position[size] != NULL)
 		size++;
-	cur = str_cpy(string);
+	cursor = str_cpy(string);
 	list = (t_string *) malloc(sizeof(t_string) * (size + 1));
-	if (list == NULL || cur == NULL)
+	if (list == NULL || cursor == NULL)
 		return (NULL);
 	size = 0;
 	while (position[size])
 	{
-		cur->start = position[size][0];
-		cur->end = position[size][1];
-		list[size] = str_cpy(cur);
+		cursor->start = position[size][0];
+		cursor->end = position[size][1];
+		list[size] = str_cpy(cursor);
 		if (list[size] == NULL)
-			return (dtor(&cur), rclearlist(list, --size), NULL);
+			return (dtor(&cursor), rclearlist(list, --size), NULL);
 		size++;
 	}
-	return (list[size] = NULL, dtor(&cur), list);
+	return (list[size] = NULL, dtor(&cursor), list);
 }
