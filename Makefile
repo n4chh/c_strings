@@ -46,6 +46,7 @@ libdebug: $(OBJS)
 	$(AR) $(ARFLAGS) $(FILENAME) $^
 
 $(NAME): $(FILENAME)
+$(FILENAME): CFLAGS = -Wall -Wextra -Werror -I $(INCDIR)
 $(FILENAME): $(OBJS)
 	$(AR) $(ARFLAGS) $@ $^
 
