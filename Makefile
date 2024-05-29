@@ -1,3 +1,30 @@
+#
+#	---{[############}-CPPUTEST-{############]}---
+#
+MAKEFILE_DIR=.
+PROJECT_DIR=.
+TEST_DIR=test
+
+CPPUTEST_HOME=$(TEST_DIR)/cpputest
+CPPUTEST_PEDANTIC_ERRORS=N
+CPPUTEST_OBJS_DIR=$(TEST_DIR)/objs
+CPPUTEST_LIB_DIR=$(TEST_DIR)/lib
+CPPFLAGS += -I$(CPPUTEST_HOME)/include
+LD_LIBRARIES = -L$(CPPUTEST_HOME)/lib -lCppUTest
+SRC_DIRS=$(PROJECT_DIR)/src
+INCLUDE_DIRS=$(PROJECT_DIR)/include
+INCLUDE_DIRS+=$(CPPUTEST_HOME)/include
+COMPONENT_NAME=strings
+TEST_SRC_DIRS=$(TEST_DIR)/test_srcs
+
+include $(CPPUTEST_HOME)/build/MakefileWorker.mk
+unitest: $(TEST_TARGET) 
+	./$(TEST_TARGET) -c
+
+#
+# 	---{[####################################]}---
+#
+
 NAME= strings
 FILENAME= lib$(NAME).a
 
@@ -10,8 +37,8 @@ SRCDIR = src
 INCDIR = include
 
 
-CFLAGS = -Wall -Wextra -Werror  -I $(INCDIR) -fsanitize=address -g3
-# CFLAGS = -Wall -Wextra -Werror -I $(INCDIR) 
+# CFLAGS = -Wall -Wextra -Werror  -I $(INCDIR) -fsanitize=address -g3
+CFLAGS = -Wall -Wextra -Werror -I $(INCDIR) 
 
 SRCS =	\
 		io.c \
@@ -27,12 +54,12 @@ SRCS =	\
 		strings.c 
 
 MAIN = main.c
-LSTRINGSPATH = libstrings
+LSTRINGSPATH = .
 LDFLAGS = -L . -l$(NAME)
 
 OBJS := $(addprefix $(OBJDIR)/,$(SRCS:%.c=%.o))
 
-all: testing
+all: 
 
 sanitize: CFLAGS += -fsanitize=address -g3 
 sanitize: $(OBJS) 
@@ -59,35 +86,9 @@ main: $(MAIN) $(NAME)
 
 
 
-#
-#	---{[############}-CPPUTEST-{############]}---
-#
-MAKEFILE_DIR=.
-PROJECT_DIR=.
-TEST_DIR=test
-
-CPPUTEST_HOME=$(TEST_DIR)/cpputest
-CPPUTEST_PEDANTIC_ERRORS=N
-CPPUTEST_OBJS_DIR=$(TEST_DIR)/objs
-CPPUTEST_LIB_DIR=$(TEST_DIR)/lib
-CPPFLAGS += -I$(CPPUTEST_HOME)/include
-LD_LIBRARIES = -L$(CPPUTEST_HOME)/lib -lCppUTest
-SRC_DIRS=$(PROJECT_DIR)/src
-INCLUDE_DIRS=$(PROJECT_DIR)/include
-INCLUDE_DIRS+=$(CPPUTEST_HOME)/include
-COMPONENT_NAME=strings
-TEST_SRC_DIRS=$(TEST_DIR)/test_srcs
-
-include $(CPPUTEST_HOME)/build/MakefileWorker.mk
-unitest: $(TEST_TARGET) 
-	./$(TEST_TARGET) -c
-
-#
-# 	---{[####################################]}---
-# 
+ 
 libclean:
 	$(RM) $(OBJDIR)
-
 fclean: libclean
 	$(RM) $(NAME)
 
