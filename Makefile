@@ -1,5 +1,3 @@
-
-
 NAME= strings
 FILENAME= lib$(NAME).a
 
@@ -60,35 +58,7 @@ main: $(MAIN) $(NAME)
 	$(CC) $(CFLAGS) $(LDFLAGS) $< -o main
 
 
-#
-#	---{[############}-CPPUTEST-{############]}---
-#
-MAKEFILE_DIR=.
-PROJECT_DIR=.
-TEST_DIR=test
-
-CPPUTEST_HOME=$(TEST_DIR)/cpputest
-CPPUTEST_PEDANTIC_ERRORS=N
-CPPUTEST_OBJS_DIR=$(TEST_DIR)/objs
-CPPUTEST_LIB_DIR=$(TEST_DIR)/lib
-CPPFLAGS += -I$(CPPUTEST_HOME)/include
-LD_LIBRARIES = -L$(CPPUTEST_HOME)/lib -lCppUTest
-SRC_DIRS=$(PROJECT_DIR)/src
-INCLUDE_DIRS=$(PROJECT_DIR)/include
-INCLUDE_DIRS+=$(CPPUTEST_HOME)/include
-COMPONENT_NAME=strings
-TEST_SRC_DIRS=$(TEST_DIR)/test_srcs
-
-include $(CPPUTEST_HOME)/build/MakefileWorker.mk
-unitest: $(TEST_TARGET) 
-	./$(TEST_TARGET) -c
-
-#
-# 	---{[####################################]}---
-#
-
- 
-libclean:
+clean:
 	$(RM) $(OBJDIR)
 fclean: libclean
 	$(RM) $(NAME)
