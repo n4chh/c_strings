@@ -22,6 +22,7 @@ SRCS =	\
 		utils.c \
 		split.c \
 		p_split.c \
+		get_set.c \
 		nsplit.c \
 		rm.c \
 		strings.c 
@@ -32,7 +33,7 @@ LDFLAGS = -L . -l$(NAME)
 
 OBJS := $(addprefix $(OBJDIR)/,$(SRCS:%.c=%.o))
 
-all: 
+all: $(NAME)
 
 sanitize: CFLAGS += -fsanitize=address -g3 
 sanitize: $(OBJS) 
@@ -60,7 +61,7 @@ main: $(MAIN) $(NAME)
 
 clean:
 	$(RM) $(OBJDIR)
-fclean: libclean
+fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
