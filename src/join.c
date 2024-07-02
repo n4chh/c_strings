@@ -1,14 +1,13 @@
 #include "libstrings.h"
 
-t_string				str_joinfront(t_string string, t_string preffix)
-{
-    size_t      length;
-    size_t      i;
-    t_string    new;
-    char        *data;
+t_string str_joinfront(t_string string, t_string preffix) {
+    size_t length;
+    size_t i;
+    t_string new;
+    char *data;
 
     new = str_cpy(string);
-    if (new == NULL)
+    if (preffix == NULL || new == NULL)
         return (new);
     length = len(new) + len(preffix);
     data = malloc(length + 1);
@@ -28,16 +27,15 @@ t_string				str_joinfront(t_string string, t_string preffix)
     return (new);
 }
 
-t_string				p_str_joinfront(t_string string, const char *preffix)
-{
-    size_t      length;
-    size_t      i;
-    size_t      new_i;
-    t_string    new;
-    char        *data;
+t_string p_str_joinfront(t_string string, const char *preffix) {
+    size_t length;
+    size_t i;
+    size_t new_i;
+    t_string new;
+    char *data;
 
     new = str_cpy(string);
-    if (new == NULL)
+    if (preffix == NULL || new == NULL)
         return (new);
     length = len(new) + p_len(preffix);
     data = malloc(length + 1);
@@ -45,7 +43,7 @@ t_string				p_str_joinfront(t_string string, const char *preffix)
         return (NULL);
     i = 0;
     while (preffix[i++])
-        data[i - 1] = preffix[i - 1]; 
+        data[i - 1] = preffix[i - 1];
     i--;
     new_i = new->start;
     while (new_i++ < new->end)
@@ -58,18 +56,17 @@ t_string				p_str_joinfront(t_string string, const char *preffix)
     return (new);
 }
 
-t_string				str_joinback(t_string string, t_string suffix)
-{
-    size_t      length;
-    size_t      i;
-    t_string    new;
-    char        *data;
+t_string str_joinback(t_string string, t_string suffix) {
+    size_t length;
+    size_t i;
+    t_string new;
+    char *data;
 
     new = str_cpy(string);
-    if (new == NULL)
+    if (suffix == NULL || new == NULL)
         return (new);
     length = len(new) + len(suffix);
-    data = malloc(sizeof(char)*(length + 1));
+    data = malloc(sizeof(char) * (length + 1));
     if (data == NULL)
         return (NULL);
     i = new->start;
@@ -86,15 +83,14 @@ t_string				str_joinback(t_string string, t_string suffix)
     return (new);
 }
 
-t_string				p_str_joinback(t_string string, const char *suffix)
-{
-    size_t      length;
-    size_t      i;
-    t_string    new;
-    char        *data;
+t_string p_str_joinback(t_string string, const char *suffix) {
+    size_t length;
+    size_t i;
+    t_string new;
+    char *data;
 
     new = str_cpy(string);
-    if (new == NULL)
+    if (suffix == NULL || new == NULL)
         return (new);
     length = len(new) + p_len(suffix);
     data = malloc(length + 1);
