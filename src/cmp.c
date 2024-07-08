@@ -11,6 +11,7 @@ long int str_cmp(t_string one, t_string two) {
         return (0);
     ione = one->start;
     itwo = two->start;
+    ;
     while (ione < one->end && itwo < two->end) {
         if ((UI)one->data[ione] != (UI)two->data[itwo])
             return ((long)(ione - one->start));
