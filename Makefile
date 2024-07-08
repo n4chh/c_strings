@@ -56,13 +56,13 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
 	$(CC) $(CFLAGS) -c $< -o $@ 
 
 main: $(MAIN) $(NAME)
-	$(CC) $(CFLAGS) $(LDFLAGS) $< -o main
+	$(CC) $(CFLAGS) $< -o main $(LDFLAGS)
 
 
 clean:
 	$(RM) $(OBJDIR)
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(FILENAME)
 
 re: fclean all
 
