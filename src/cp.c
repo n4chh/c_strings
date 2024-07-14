@@ -70,13 +70,11 @@ char *p_str_cpy(const char *string) {
 
 char *p_str_ncpy(const char *string, size_t size) {
     char *new;
-    size_t length;
     size_t i;
 
     if (string == NULL)
         return (NULL);
     i = 0;
-    length = p_len(string);
     new = malloc(sizeof(char) * (size + 1));
     while (string[i] != 0 && i < size) {
         new[i] = string[i];
