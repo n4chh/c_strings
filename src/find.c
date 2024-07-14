@@ -6,7 +6,7 @@ long int findchar(t_string string, const char c) {
     if (string == NULL || string->data == NULL)
         return (-1);
     pos = string->start;
-    while ((size_t)pos < string->end) {
+    while ((size_t)pos + string->start < string->end) {
         if (get(string, pos) == c)
             break;
         pos++;

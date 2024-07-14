@@ -18,6 +18,8 @@ void printnl(t_string string);
 //  cp.c
 t_string str_cpy(t_string string);
 t_string str_ncpy(t_string string, size_t size);
+char *p_str_cpy(const char *string);
+char *p_str_ncpy(const char *string, size_t size);
 //  cmp.c
 long int str_cmp(t_string one, t_string two);
 long int str_ncmp(t_string one, t_string two, size_t max);
