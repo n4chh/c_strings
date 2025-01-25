@@ -7,7 +7,7 @@
 
 typedef struct s_str *t_string;
 
-//  stirng.c
+//  string.c
 void dtor(t_string *string);
 void ctor(t_string *string, const char *data);
 //  io.c
