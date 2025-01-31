@@ -59,6 +59,7 @@ void p_findword(t_string string, const char *delimitator);
 size_t len(t_string string);
 size_t p_len(const char *str);
 // utils2.c
+size_t	p_wordcount(t_string string, const char *delimitator);
 size_t	wordcount(t_string string, t_string delimitator);
 void	rclearlist(t_string *string, size_t	size);
 // find.c
