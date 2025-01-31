@@ -7,7 +7,7 @@ t_string *p_split(t_string string, const char *delimitator) {
     t_string *list;
 
     w = 0;
-    list_size = wordcount(string, delimitator);
+    list_size = p_wordcount(string, delimitator);
     list = malloc(sizeof(t_string) * (list_size + 1));
     if (list == NULL)
         return (NULL);
