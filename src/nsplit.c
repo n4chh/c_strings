@@ -1,7 +1,5 @@
 #include "libstrings.h"
 
-// static int wordcount(t_string   string, char  *delimitator)
-
 static int checkranges(t_string string, size_t splits, size_t *positions) {
     size_t i;
 
@@ -18,12 +16,6 @@ static int checkranges(t_string string, size_t splits, size_t *positions) {
     if (positions && string->end < positions[i])
         return (0);
     return (1);
-}
-static void rclearlist(t_string *string, size_t size) {
-    while (size-- > 0)
-        dtor(&string[size]);
-    free(string);
-    string = NULL;
 }
 
 t_string *nsplit(t_string string, size_t splits, size_t *position) {

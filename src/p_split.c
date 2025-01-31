@@ -1,103 +1,72 @@
 #include "libstrings.h"
 
-// static int wordcount(t_string   string, char  *delimitator)
-static size_t	wordcount(t_string string, const char *delimitator)
-{
-	size_t		words;
-	size_t		init_start;
-	t_string	next;
+t_string *p_split(t_string string, const char *delimitator) {
+    size_t w;
+    size_t list_size;
+    t_string str;
+    t_string *list;
 
-	words = 0;
-	next = str_cpy(string);
-	if (next == NULL)
-		return (0);
-	init_start = string->start;
-	while (next->start < next->end)
-	{
-		p_findword(next, delimitator);
-		words++;
-		next->start = next->end;
-		next->end = string->end;
-	}
-	string->start = init_start;
-	dtor(&next);
-	return (words);
+    w = 0;
+    list_size = wordcount(string, delimitator);
+    list = malloc(sizeof(t_string) * (list_size + 1));
+    if (list == NULL)
+        return (NULL);
+    str = str_cpy(string);
+    if (str == NULL)
+        return (NULL);
+    while (w++ < list_size) {
+        p_findword(str, delimitator);
+        list[w - 1] = str_cpy(str);
+        if (list[w - 1] == NULL)
+            return (dtor(&str), rclearlist(list, --w), NULL);
+        str->start = str->end;
+        str->end = string->end;
+    }
+    list[w - 1] = NULL;
+    dtor(&str);
+    return (list);
 }
 
-static void	rclearlist(t_string *string, size_t	size)
-{
-	while (size-- > 0)
-		dtor(&string[size]);
-	free(string);
-	string = NULL;
-}
+t_string *charlstostrls(char **list) {
+    t_string *new_list;
+    size_t i;
 
-t_string	*p_split(t_string string, const char *delimitator)
-{
-	size_t		w;
-	size_t		list_size;
-	t_string	str;
-	t_string	*list;
-
-	w = 0;
-	list_size = wordcount(string, delimitator);
-	list = malloc(sizeof(t_string) * (list_size + 1));
-	if (list == NULL)
+    if (list == NULL || *list == NULL)
+        return (NULL);
+    i = 0;
+    while (list[i] != NULL)
+        i++;
+    new_list = malloc(sizeof(t_string) * i + 1);
+	if (new_list)
 		return (NULL);
-	str = str_cpy(string);
-	if (str == NULL)
-		return (NULL);
-	while (w++ < list_size)
-	{
-		p_findword(str, delimitator);
-		list[w - 1] = str_cpy(str);
-		if (list[w - 1] == NULL)
-			return (dtor(&str), rclearlist(list, --w), NULL);
-		str->start = str->end;
-		str->end = string->end;
-	}
-	list[w - 1] = NULL;
-	dtor(&str);
-	return (list);
-}
-
-void	p_printlist(t_string *string, const char *separator)
-{
-	size_t	i;
-	size_t	sep_len;
-
-	if (string == NULL)
-		return ;
 	i = 0;
-	sep_len = p_len(separator);
-	while (string[i] != NULL)
-	{
-		print(string[i]);
-		i++;
-		if (separator && string[i] != NULL)
-			write(1, separator, sep_len);
-	}
+    while (list[i] != NULL) {
+        ctor(&new_list[i], p_str_cpy(list[i]));
+        if (new_list[i] == NULL)
+            return (rclearlist(new_list, i), NULL);
+        i++;
+    }
+	new_list[i] = NULL;
+    return (new_list);
 }
 
-char	**strlstocharls(t_string *list)
-{
-	size_t	list_size;
-	char	**strlist;
+char **strlstocharls(t_string *list) {
+    size_t list_size;
+    char **strlist;
 
-	if (list == NULL)
-		return (NULL);
-	list_size = 0;
-	while (list[list_size] != NULL)
-		list_size++;
-	strlist = malloc(sizeof(char *) * (list_size + 1));
-	if (strlist == NULL)
-		return (NULL);
-	list_size = 0;
-	while (list[list_size] != NULL)
-	{
-		strlist[list_size] = list[list_size]->data;
-		list_size++;
-	}
-	strlist[list_size] = NULL;
-	return (strlist);
+    if (list == NULL)
+        return (NULL);
+    list_size = 0;
+    while (list[list_size] != NULL)
+        list_size++;
+    strlist = malloc(sizeof(char *) * (list_size + 1));
+    if (strlist == NULL)
+        return (NULL);
+    list_size = 0;
+    while (list[list_size] != NULL) {
+        strlist[list_size] = list[list_size]->data;
+        list_size++;
+    }
+    strlist[list_size] = NULL;
+    return (strlist);
 }

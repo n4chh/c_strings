@@ -20,6 +20,7 @@ SRCS =	\
 		join.c \
 		sub.c \
 		utils.c \
+		utils2.c \
 		find.c \
 		split.c \
 		p_split.c \
